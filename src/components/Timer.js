@@ -56,7 +56,7 @@ const Timer = () => {
   };
 
   const openSettingDialog = () => {
-    console.log('Settings icon clicked'); // Debugging line
+    console.log('Settings icon clicked');
     setShowSettingsDialog(true);
   };
 
@@ -125,7 +125,7 @@ const Timer = () => {
         </DialogActions>
       </Dialog>
 
-      {/* Main Timer Box */}
+      {/* Timer Box */}
       <Box
         position="relative"
         display="flex"
@@ -133,7 +133,7 @@ const Timer = () => {
         alignItems="center"
         justifyContent="center"
         padding={4}
-        bgcolor="#b74d4d" // Red color background
+        bgcolor="#b74d4d"
         borderRadius={4}
         width="350px"
         boxShadow={3}
