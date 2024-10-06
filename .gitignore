@@ -1,0 +1,11 @@
+# Python
+*.pyc
+__pycache__/
+
+# Virtual environment
+pomodoro-backend/.venv
+env/
+
+# IDEs
+.vscode/
+.idea/
