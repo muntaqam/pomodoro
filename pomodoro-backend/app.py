@@ -3,8 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 
-
-
 app = Flask(__name__)
 CORS(app)
 
@@ -14,7 +12,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
-#user model
+#--------------------------------------- models --------------------------------------- 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
@@ -24,10 +22,19 @@ class User(db.Model):
     def __repr__(self):
         return f'<User {self.username}>'
 
+class PomodoroSession(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer,db.ForeignKey('user.id'), nullable=False )
+    duration = db.Column(db.Integer, nullable = False) #seconds
+    timestamp = db.Column(db.DateTime, nullable = False)
+
+
+
+#------------------------------------------------------------------------------------------ 
+
 #create database
 with app.app_context():
     db.create_all()
-
 
 
 #register endpoint
@@ -73,11 +80,49 @@ def login():
     #find user
     user = User.query.filter_by(username=username).first()
 
-    #check if user excist and pass is correctr
+    #check if user exist and pass is correctr
     if user and check_password_hash(user.password_hash,password):
         return jsonify({"message":"Login success"}), 200
     else:
         return jsonify({"error": "Invalid username or password"}), 401
+
+
+#log session
+@app.route('/log_session', methods=['POST'])
+def log_session():
+    data = request.get_json()
+    
+    user_id = data.get('user_id')
+    duration = data.get('duration')
+
+    if not user_id or not duration:
+        return jsonify({'message': 'userid or duration not found'}),400
+    
+
+    #create new session log
+    from datetime import datetime
+    new_session=PomodoroSession(user_id= user_id, duration= duration, timestamp = datetime.now())
+    return jsonify({'message': 'Pomodoro session logged successfully'})
+
+#timer history
+@app.route('/timer_history/<int:user_id>', methods=['GET'])
+def get_timer_history(user_id):
+    user = User.query.get(user_id)
+
+    if not user:
+         return jsonify({'message': 'User not found'}),400
+    
+    history = PomodoroSession.query.filter_by(user_id=user_id).all()
+    session_list = [
+        {
+            'Duration' : session.duration,
+            'timestamp': session.timestamp.strftime('%Y-%m-%d %H:%M:%S')
+
+        }
+        for session in history
+    ]
+
+    return jsonify(session_list)
     
 if __name__ =='__main__':
     app.run(debug=True)
