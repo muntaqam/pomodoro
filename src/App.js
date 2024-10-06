@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import './App.css';
 import Timer from './components/Timer';
+import TaskManager from './components/TaskManager';
 
 function App() {
   return (
@@ -15,12 +16,11 @@ function App() {
     >
 
 
-     <Typography variant="h3" gutterBottom>
+      <Typography variant="h3" gutterBottom>
         Pomodoro Timer
       </Typography>
-      <Timer/>
-
-
+      <Timer />
+      <TaskManager />
     </Box>
   );
 }
