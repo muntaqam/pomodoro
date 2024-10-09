@@ -88,6 +88,7 @@ const Timer = () => {
             <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>TIMER</Typography>
           </Box>
           <Typography variant="subtitle2" sx={{ mb: 2 }}>Time (minutes)</Typography>
+
           <Box display="flex" gap={2} sx={{ mb: 2 }}>
             <TextField
               label="Pomodoro"
@@ -138,6 +139,9 @@ const Timer = () => {
         width="350px"
         boxShadow={3}
         margin="auto"
+        mt="-1px"
+        mb="-1px"
+
       >
         <IconButton onClick={openSettingDialog} sx={{ position: 'absolute', top: 8, right: 8 }}>
           <SettingsIcon sx={{ color: 'white' }} />

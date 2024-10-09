@@ -12,15 +12,31 @@ function App() {
       alignItems="center"
       justifyContent="center"
       minHeight="100vh"
-      bgcolor="#f9f9f9"
+      bgcolor="#bf4f4f"
+      
+      
+      
+
+     
     >
 
 
-      <Typography variant="h3" gutterBottom>
+      <Typography
+        variant="h2"
+        gutterBottom
+        color="white"
+        sx={{ fontFamily: 'Rubik Bubbles' }}
+        mt={-20}
+        
+      
+      >
         Pomodoro Timer
       </Typography>
       <Timer />
-      <TaskManager />
+      <Box mt={6}> 
+        <TaskManager />
+      </Box>
+    
     </Box>
   );
 }

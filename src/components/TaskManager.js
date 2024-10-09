@@ -31,15 +31,19 @@ function TaskManager() {
             <Box display="flex"
                 flexDirection="column"
                 justifyContent="space-between"
-                gap={2}>
+                gap={2}
+            >
+
                 <Card sx={{ p: 1, mb: 1 }}>
                     <TextField
                         label="New Task"
                         value={newTask}
+                        variant="standard"
+
                         onChange={(e) => setNewTask(e.target.value)}
                     />
 
-                    <IconButton onClick={addTask}>
+                    <IconButton onClick={addTask} sx={{ mt: '7px', ml: '8px' }}>
                         <AddIcon />
                     </IconButton>
 

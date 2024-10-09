@@ -2,6 +2,12 @@
   text-align: center;
 }
 
+.rubik-bubbles-regular {
+  font-family: "Rubik Bubbles", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
