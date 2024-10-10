@@ -1,70 +1,112 @@
-# Getting Started with Create React App
+# Pomodoro App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The **Pomodoro App** is a time management tool based on the Pomodoro Technique, designed to help users improve focus and productivity by breaking work into intervals, typically 25 minutes in length, separated by short breaks. This app provides an intuitive user experience, allowing you to track tasks, manage work sessions, and monitor productivity.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Timer Functionality**: A customizable Pomodoro timer to manage work and break intervals.
+- **Task Management**: Users can add, edit, and delete tasks to keep track of their workload.
+- **User Authentication**: Register and log in to keep track of tasks and productivity.
+- **Backend Integration**: The app uses a backend to store user data, tasks, and session logs.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend**: React Native
+  - React components for a clean, modular interface.
+  - CSS for styling and a responsive look.
+- **Backend**: Flask (Python)
+  - Provides RESTful APIs for handling user data and tasks.
+- **Database**: SQLite
+  - Stores user data, including tasks and session details.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+To get the app up and running locally, follow these steps:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
 
-### `npm run build`
+- **Node.js** (for React Native)
+- **Python 3** (for Flask backend)
+- **Expo CLI** (to run the app)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Setup
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Clone the repository**:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   git clone https://github.com/Tamjeed-Lasker/Pomodoro.git
+   cd Pomodoro
+   ```
 
-### `npm run eject`
+2. **Install dependencies**:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   - Navigate to the frontend folder (`pomodoro-app`) and install the dependencies:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+     ```bash
+     cd pomodoro-app
+     npm install
+     ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   - Navigate to the backend folder (`pomodoro-backend`) and install the dependencies using Python's package manager:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+     ```bash
+     cd ../pomodoro-backend
+     pip install -r requirements.txt
+     ```
 
-## Learn More
+3. **Run the Backend**:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   Start the Flask server to provide backend functionality:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   ```bash
+   python app.py
+   ```
 
-### Code Splitting
+4. **Run the Frontend**:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   Start the React Native app:
 
-### Analyzing the Bundle Size
+   ```bash
+   cd ../pomodoro-app
+   npm start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+   Use Expo to run the app on your mobile device or emulator.
 
-### Making a Progressive Web App
+## Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. **Register/Login**: Users must register or log in to start managing tasks and tracking productivity.
+2. **Add Tasks**: Add tasks to the task manager to organize your work.
+3. **Start Timer**: Start a Pomodoro timer for a task. The app will automatically prompt for a short or long break after each session.
+4. **Track Progress**: Use the task manager and timer history to track progress and productivity.
 
-### Advanced Configuration
+## Screenshots
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+*Include relevant screenshots to showcase the app's user interface.*
 
-### Deployment
+## Future Enhancements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- **Statistics Page**: Display productivity statistics over time.
+- **Notification System**: Add notifications to alert users when a session or break ends.
+- **Dark Mode**: Support for dark/light themes.
 
-### `npm run build` fails to minify
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Contributions are welcome! To contribute:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+**Tamjeed Lasker** - [Email](mailto:iamtamjeedlasker@gmail.com)
+
+Feel free to reach out with questions or suggestions!
+
