@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { loginUser } from './api';  
+import { loginUser } from './api';
 
 const Login = ({ setAuth }) => {
   const [username, setUsername] = useState('');
@@ -10,7 +10,7 @@ const Login = ({ setAuth }) => {
     e.preventDefault();
     try {
       const response = await loginUser({ username, password });
-      setAuth(true); 
+      setAuth(true);
       setMessage(response.message);
     } catch (error) {
       setMessage(error.error);
