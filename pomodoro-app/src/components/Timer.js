@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button, IconButton } from '@mui/material';
 import { Settings as SettingsIcon } from '@mui/icons-material';
 import { Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material';
 import { Timer as TimerIcon, Close as CloseIcon } from '@mui/icons-material';
+import '../App.css';
 
-const Timer = () => {
+const Timer = ({ activeTab, setActiveTab }) => {
   const [seconds, setSeconds] = useState(1500); // 25 min in seconds
   const [isActive, setIsActive] = useState(false);
-  const [activeTab, setActiveTab] = useState('pomodoro');
   const [sessionMinutes, setSessionMinutes] = useState(25);
   const [shortBreakMinutes, setShortBreakMinutes] = useState(5);
   const [longBreakMinutes, setLongBreakMinutes] = useState(15);
@@ -44,7 +44,7 @@ const Timer = () => {
   }, [isActive, seconds]);
 
   const handleTabChange = (tab) => {
-    setActiveTab(tab);
+    setActiveTab(tab); // Use the setActiveTab from props to change the active tab
     setIsActive(false);
     if (tab === 'pomodoro') {
       setSeconds(sessionMinutes * 60);
@@ -56,13 +56,11 @@ const Timer = () => {
   };
 
   const openSettingDialog = () => {
-    console.log('Settings icon clicked');
     setShowSettingsDialog(true);
   };
 
   const closeSettingDialog = () => {
     setShowSettingsDialog(false);
-
 
     if (activeTab === 'pomodoro') {
       setSeconds(sessionMinutes * 60);
@@ -72,6 +70,65 @@ const Timer = () => {
       setSeconds(longBreakMinutes * 60);
     }
   };
+
+  // Function to get button styles based on active tab
+  const getButtonStyles = () => {
+    switch (activeTab) {
+      case 'pomodoro':
+        return {
+          backgroundColor: '#7a2b2b', // Darker shade of Pomodoro color
+          color: '#ffffff',
+        };
+      case 'shortBreak':
+        return {
+          backgroundColor: '#4a6b62', // Darker shade of Short Break color (Muted Teal)
+          color: '#ffffff',
+        };
+      case 'longBreak':
+        return {
+          backgroundColor: '#2a336b', // Darker shade of Long Break color
+          color: '#ffffff',
+        };
+      default:
+        return {
+          backgroundColor: '#7a2b2b', // Default to darker Pomodoro
+          color: '#ffffff',
+        };
+    }
+  };
+
+
+  const getTabStyles = (tab) => {
+    switch (tab) {
+      case 'pomodoro':
+        return {
+          color: 'white',
+          backgroundColor: tab === activeTab ? '#7a2b2b' : 'transparent', // Darker shade for active Pomodoro tab
+          fontWeight: tab === activeTab ? 'bold' : 'normal',
+        };
+      case 'shortBreak':
+        return {
+          color: 'white',
+          backgroundColor: tab === activeTab ? '#4a6b62' : 'transparent', // Darker shade for active Short Break tab
+          fontWeight: tab === activeTab ? 'bold' : 'normal',
+        };
+      case 'longBreak':
+        return {
+          color: 'white',
+          backgroundColor: tab === activeTab ? '#2a336b' : 'transparent', // Darker shade for active Long Break tab
+          fontWeight: tab === activeTab ? 'bold' : 'normal',
+        };
+      default:
+        return {
+          color: '#f5eaea',
+          backgroundColor: 'transparent',
+          fontWeight: 'normal',
+        };
+    }
+  };
+
+
+
   return (
     <>
       {/* Settings Dialog */}
@@ -134,14 +191,12 @@ const Timer = () => {
         alignItems="center"
         justifyContent="center"
         padding={4}
-        bgcolor="#b74d4d"
         borderRadius={4}
         width="350px"
         boxShadow={3}
         margin="auto"
         mt="-1px"
         mb="-1px"
-
       >
         <IconButton onClick={openSettingDialog} sx={{ position: 'absolute', top: 8, right: 8 }}>
           <SettingsIcon sx={{ color: 'white' }} />
@@ -152,21 +207,18 @@ const Timer = () => {
             variant="text"
             onClick={() => handleTabChange('pomodoro')}
             sx={{
-              color: activeTab === 'pomodoro' ? 'white' : '#f5eaea',
-              backgroundColor: activeTab === 'pomodoro' ? '#914141' : 'transparent',
-              fontWeight: activeTab === 'pomodoro' ? 'bold' : 'normal',
+              ...getTabStyles('pomodoro'),
               textTransform: 'none',
             }}
           >
             Pomodoro
           </Button>
+
           <Button
             variant="text"
             onClick={() => handleTabChange('shortBreak')}
             sx={{
-              color: activeTab === 'shortBreak' ? 'white' : '#f5eaea',
-              backgroundColor: activeTab === 'shortBreak' ? '#914141' : 'transparent',
-              fontWeight: activeTab === 'shortBreak' ? 'bold' : 'normal',
+              ...getTabStyles('shortBreak'),
               textTransform: 'none',
             }}
           >
@@ -176,9 +228,7 @@ const Timer = () => {
             variant="text"
             onClick={() => handleTabChange('longBreak')}
             sx={{
-              color: activeTab === 'longBreak' ? 'white' : '#f5eaea',
-              backgroundColor: activeTab === 'longBreak' ? '#914141' : 'transparent',
-              fontWeight: activeTab === 'longBreak' ? 'bold' : 'normal',
+              ...getTabStyles('longBreak'),
               textTransform: 'none',
             }}
           >
@@ -191,10 +241,8 @@ const Timer = () => {
         <Button
           onClick={toggle}
           variant="contained"
-          color="inherit"
           sx={{
-            backgroundColor: '#f5eaea',
-            color: '#914141',
+            ...getButtonStyles(), // Apply the dynamic button styles
             fontWeight: 'bold',
             textTransform: 'uppercase',
             width: '150px',

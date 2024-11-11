@@ -1,3 +1,5 @@
+
+
 .App {
   text-align: center;
 }
@@ -41,4 +43,20 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+
+/* comditional background color change */
+.pomodoro-bg {
+  background-color: #b74d4d;
+}
+
+.shortBreak-bg {
+  /* background-color: #0a9396; */
+    background-color: #9caf88;
+}
+
+.longBreak-bg {
+  background-color: #3f51b5;
 }
